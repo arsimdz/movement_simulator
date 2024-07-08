@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: data-gen-job
+spec:
+  template:
+    spec:
+      hostNetwork: true
+      containers:
+      - name: data-gen
+        image: data-gen
+        imagePullPolicy: Never
+        env:
+          - name: HOST_URL
+            value: "http://0.0.0.0:8888"
+      restartPolicy: Never
+
+
+  backoffLimit: 4
